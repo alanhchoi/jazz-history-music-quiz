@@ -75,7 +75,7 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
       />
       <div>
         {showAnswer ? (
-          <div className="max-w-96 text-pretty">
+          <div className="max-w-72 md:max-w-96 text-pretty">
             <b>{title}</b>
             <p>{credits}</p>
           </div>
