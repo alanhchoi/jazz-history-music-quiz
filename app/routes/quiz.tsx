@@ -78,7 +78,7 @@ export default function Quiz() {
           type="button"
           onClick={() => setCurrent(current - 1)}
           disabled={current === 0}
-          className="bottom-[env(safe-area-inset-bottom)] left-0 absolute md:relative flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 md:py-2 ps-4 md:ps-1 pe-8 md:pe-3 md:font-medium enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
+          className="bottom-[env(safe-area-inset-bottom)] left-0 fixed md:relative flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 md:py-2 ps-4 md:ps-1 pe-8 md:pe-3 md:font-medium enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
         >
           <ChevronLeftIcon className="size-5" />
           Previous
@@ -87,12 +87,12 @@ export default function Quiz() {
           type="button"
           onClick={() => setCurrent(current + 1)}
           disabled={current === listLength - 1}
-          className="right-0 bottom-[env(safe-area-inset-bottom)] absolute md:relative flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 md:py-2 ps-8 md:ps-3 pe-4 md:pe-1 md:font-medium enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
+          className="right-0 bottom-[env(safe-area-inset-bottom)] fixed md:relative flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 md:py-2 ps-8 md:ps-3 pe-4 md:pe-1 md:font-medium enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
         >
           Next
           <ChevronRightIcon className="size-5" />
         </button>
-        <div className="md:hidden bottom-[env(safe-area-inset-bottom)] left-1/2 absolute py-4 text-lg tracking-wide -translate-x-1/2">
+        <div className="md:hidden bottom-[env(safe-area-inset-bottom)] left-1/2 fixed py-4 text-lg tracking-wide -translate-x-1/2">
           {current + 1} / {listLength}
         </div>
       </header>
