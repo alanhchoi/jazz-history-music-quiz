@@ -46,7 +46,7 @@ export default function Quiz() {
       <header className="flex items-center border-b">
         <Link
           to="/"
-          className="flex flex-none items-center self-stretch gap-1 hover:bg-neutral-800 py-2 ps-2 pe-3 border-e font-medium hover:text-white text-sm tracking-wide cursor-pointer neutral-800"
+          className="flex flex-none items-center self-stretch gap-1 light:hover:bg-neutral-800 py-2 ps-2 pe-3 border-e font-medium hover:text-white text-sm tracking-wide cursor-pointer neutral-800"
         >
           <HomeIcon className="size-5" />
           Home
@@ -60,7 +60,7 @@ export default function Quiz() {
           </div>
           <label
             htmlFor="randomStartTime"
-            className="flex items-center self-stretch gap-1.5 text-neutral-600"
+            className="flex items-center self-stretch gap-1.5 text-neutral-600 dark:text-neutral-300"
           >
             <input
               id="randomStartTime"
