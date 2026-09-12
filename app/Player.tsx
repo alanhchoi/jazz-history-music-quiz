@@ -59,7 +59,7 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
             : {
                 opacity: 0,
                 pointerEvents: "none",
-                position: "absolute",
+                position: "fixed",
                 zIndex: -1,
               }
         }
