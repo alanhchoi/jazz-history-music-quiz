@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Jazz History Listening List Music Quiz" },
+    { title: "34400 Listening List Music Quiz" },
     { name: "description", content: "" },
   ];
 }

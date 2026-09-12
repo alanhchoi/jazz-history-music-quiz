@@ -2,9 +2,10 @@ import { Link, useSearchParams } from "react-router";
 import data from "../data.json";
 import { useMemo, useState } from "react";
 import { shuffle } from "fast-shuffle";
-import Player from "../Player";
+import Player from "../Player.client";
 import { HomeIcon } from "@heroicons/react/20/solid";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
+import type { Route } from "./+types/home";
 
 const { listeningList } = data;
 
@@ -19,6 +20,13 @@ function getScope(scopeParam: string) {
     default:
       return [1, 66];
   }
+}
+
+export function meta({}: Route.MetaArgs) {
+  return [
+    { title: "34400 Listening List Music Quiz" },
+    { name: "description", content: "" },
+  ];
 }
 
 export default function Quiz() {
@@ -97,11 +105,13 @@ export default function Quiz() {
         </div>
       </header>
       <div className="flex flex-col flex-1 justify-center items-center pt-8 pb-16">
-        <Player
-          key={currentItem.youtubeId}
-          tune={currentItem}
-          randomStartTime={randomStartTime}
-        />
+        {Player != null && (
+          <Player
+            key={currentItem.youtubeId}
+            tune={currentItem}
+            randomStartTime={randomStartTime}
+          />
+        )}
       </div>
     </div>
   );
