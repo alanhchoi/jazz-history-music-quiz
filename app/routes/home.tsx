@@ -1,5 +1,4 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 import type { SubmitEventHandler } from "react";
 import { useNavigate } from "react-router";
 
@@ -20,7 +19,7 @@ export default function Home() {
     const searchParams = new URLSearchParams();
 
     const randomStartTime = formData.get("randomStartTime");
-    searchParams.append("range", String(formData.get("range")));
+    searchParams.append("scope", String(formData.get("scope")));
 
     if (randomStartTime === "on") {
       searchParams.append("randomStartTime", "on");
@@ -36,11 +35,11 @@ export default function Home() {
       </header>
       <form className="flex flex-col items-start" onSubmit={startQuiz}>
         <fieldset>
-          <legend>Range</legend>
+          <legend>Scope</legend>
           <div>
             <input
               type="radio"
-              name="range"
+              name="scope"
               id="exam1"
               value="exam1"
               defaultChecked
@@ -48,15 +47,15 @@ export default function Home() {
             <label htmlFor="exam1">Track 1–22 (Exam 1)</label>
           </div>
           <div>
-            <input type="radio" name="range" id="exam2" value="exam2" />
+            <input type="radio" name="scope" id="exam2" value="exam2" />
             <label htmlFor="exam2">Track 23–44 (Exam 2)</label>
           </div>
           <div>
-            <input type="radio" name="range" id="exam3" value="exam3" />
+            <input type="radio" name="scope" id="exam3" value="exam3" />
             <label htmlFor="exam3">Track 23–44 (Exam 3)</label>
           </div>
           <div>
-            <input type="radio" name="range" id="final" value="final" />
+            <input type="radio" name="scope" id="final" value="final" />
             <label htmlFor="final">Track 1–66 (Final)</label>
           </div>
         </fieldset>
