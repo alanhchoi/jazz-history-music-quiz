@@ -52,7 +52,16 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
     <div className="flex flex-row flex-wrap items-start gap-4 px-4 min-w-0">
       <YouTube
         videoId={youtubeId}
-        // style={{ display: showAnswer ? "block" : "none" }}
+        style={
+          showAnswer
+            ? {}
+            : {
+                opacity: 0,
+                pointerEvents: "none",
+                position: "absolute",
+                zIndex: -1,
+              }
+        }
         onReady={onPlayerReady}
         onPlay={() => {
           setIsPlaying(true);
