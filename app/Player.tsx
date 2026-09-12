@@ -36,6 +36,7 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
       const startTime = getRandomIntExclusive(0, duration - 60);
       setStartTime(startTime);
       player.seekTo(startTime);
+      player.pauseVideo();
     }
   };
 
@@ -74,11 +75,9 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
           setIsPlaying(false);
         }}
         onStateChange={(event) => {
+          console.log(event.data);
           const newIsBuffering = event.data === 3;
-
-          if (isBuffering !== newIsBuffering) {
-            setIsBuffering(newIsBuffering);
-          }
+          setIsBuffering(newIsBuffering);
         }}
         opts={opts}
       />
@@ -97,7 +96,7 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
                   youtubePlayerRef.current?.seekTo(startTime);
                   youtubePlayerRef.current?.playVideo();
                 }}
-                className="flex flex-col justify-center items-center gap-0.5 enabled:hover:bg-black disabled:opacity-25 border rounded-full w-24 aspect-square font-medium enabled:hover:text-white text-xs uppercase enabled:cursor-pointer"
+                className="flex flex-col justify-center items-center gap-0.5 enabled:hover:bg-black disabled:opacity-25 border dark:enabled:hover:border-white enabled:hover:border-black rounded-full w-24 aspect-square font-medium enabled:hover:text-white text-xs uppercase enabled:cursor-pointer"
                 disabled={!hasPlayed}
               >
                 <ArrowPathIcon className="size-8" />
@@ -114,13 +113,22 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
                 }}
                 disabled={isBuffering}
                 className={clsx(
-                  "flex flex-col justify-center items-center gap-0.5 hover:bg-black border rounded-full w-24 aspect-square font-medium hover:text-white text-xs uppercase cursor-pointer",
+                  "relative flex flex-col justify-center items-center gap-0.5 enabled:hover:bg-black border dark:border-white dark:enabled:hover:border-white enabled:hover:border-black rounded-full w-24 aspect-square font-medium enabled:hover:text-white text-xs uppercase cursor-pointer",
                   {
-                    "bg-black text-white": isPlaying,
-                    "animate-pulse": isBuffering,
+                    "bg-black border-black dark:border-white text-white":
+                      isPlaying,
+                    "animate-pulse border-none": isBuffering,
                   },
                 )}
               >
+                <div
+                  className={clsx(
+                    "top-0 right-0 bottom-0 left-0 absolute opacity-0 border border-black dark:border-white border-dashed rounded-full animate-spin pointer-events-none dash- [animation-duration:5s]",
+                    {
+                      "opacity-100": isBuffering,
+                    },
+                  )}
+                />
                 {isPlaying ? (
                   <>
                     <PauseIcon className="size-8" />
@@ -140,7 +148,7 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
               disabled={!hasPlayed}
               className={clsx(
                 "py-6 rounded-full w-full font-medium uppercase transition-opacity cursor-pointer",
-                { "opacity-0": !hasPlayed },
+                { "opacity-0 disabled pointer-events-none": !hasPlayed },
               )}
             >
               Show Answer
