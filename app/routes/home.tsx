@@ -80,7 +80,7 @@ export default function Home() {
         <div className="flex items-center gap-3 dark:has-checked:bg-transparent has-checked:bg-neutral-100 py-2 ps-4 border border-neutral-300 dark:border-neutral-400 rounded-sm w-full dark:has-checked:text-white dark:text-neutral-400">
           <input id="randomStartTime" name="randomStartTime" type="checkbox" />
           <label className="flex-1" htmlFor="randomStartTime">
-            Start at a random point
+            Play at a random point
           </label>
         </div>
 

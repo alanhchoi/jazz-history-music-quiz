@@ -71,7 +71,7 @@ export default function Quiz() {
                 setRandomStartTime(event.target.checked);
               }}
             />
-            <span>Randomize start time</span>
+            <span>Play at a random point</span>
           </label>
         </div>
       </header>
