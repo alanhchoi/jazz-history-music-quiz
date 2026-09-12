@@ -71,7 +71,7 @@ export default function Quiz() {
             <span>Play at a random point</span>
           </label>
         </div>
-        <div className="flex-1 md:flex-none self-center px-4 font-medium text-lg text-end uppercase tracking-wide">
+        <div className="flex-1 md:flex-none self-center px-4 font-medium text-sm md:text-lg text-end uppercase tracking-wide">
           {current + 1} / {listLength}
         </div>
         <button
