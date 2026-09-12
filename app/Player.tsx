@@ -24,6 +24,7 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
   const [hasPlayed, setHasPlayed] = useState(false);
   const [startTime, setStartTime] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [isBuffering, setIsBuffering] = useState(false);
   const { title, credits, youtubeId } = tune;
 
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
@@ -63,6 +64,13 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
         onEnd={() => {
           setIsPlaying(false);
         }}
+        onStateChange={(event) => {
+          const newIsBuffering = event.data === 3;
+
+          if (isBuffering !== newIsBuffering) {
+            setIsBuffering(newIsBuffering);
+          }
+        }}
         opts={opts}
       />
       <div>
@@ -95,10 +103,12 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
                     youtubePlayerRef.current?.playVideo();
                   }
                 }}
+                disabled={isBuffering}
                 className={clsx(
                   "flex flex-col justify-center items-center gap-0.5 hover:bg-black border rounded-full w-24 aspect-square font-medium hover:text-white text-xs uppercase cursor-pointer",
                   {
                     "bg-black text-white": isPlaying,
+                    "animate-pulse": isBuffering,
                   },
                 )}
               >
