@@ -96,7 +96,7 @@ export default function Quiz() {
           {current + 1} / {listLength}
         </div>
       </header>
-      <div className="flex flex-col flex-1 justify-center items-center">
+      <div className="flex flex-col flex-1 justify-center items-center py-16">
         <Player
           key={currentItem.youtubeId}
           tune={currentItem}
