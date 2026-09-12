@@ -29,42 +29,67 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col px-4 pt-16 pb-4">
-      <header>
-        <h1>Jazz History Listening List Music Quiz</h1>
+    <main className="flex flex-col px-8 pt-8 pb-4">
+      <header className="mb-8">
+        <h1 className="font-bold text-5xl text-pretty">
+          Jazz History Listening List Music Quiz
+        </h1>
       </header>
-      <form className="flex flex-col items-start" onSubmit={startQuiz}>
-        <fieldset>
-          <legend>Scope</legend>
-          <div>
-            <input
-              type="radio"
-              name="scope"
-              id="exam1"
-              value="exam1"
-              defaultChecked
-            />
-            <label htmlFor="exam1">Track 1–22 (Exam 1)</label>
-          </div>
-          <div>
-            <input type="radio" name="scope" id="exam2" value="exam2" />
-            <label htmlFor="exam2">Track 23–44 (Exam 2)</label>
-          </div>
-          <div>
-            <input type="radio" name="scope" id="exam3" value="exam3" />
-            <label htmlFor="exam3">Track 23–44 (Exam 3)</label>
-          </div>
-          <div>
-            <input type="radio" name="scope" id="final" value="final" />
-            <label htmlFor="final">Track 1–66 (Final)</label>
+      <form
+        className="flex flex-col flex-1 items-start gap-4 max-w-96"
+        onSubmit={startQuiz}
+      >
+        <fieldset className="items-stretch w-full">
+          <legend className="mb-1 font-semibold text-sm uppercase tracking-wider">
+            Scope
+          </legend>
+          <div className="flex flex-col border border-neutral-300 rounded-sm">
+            <div className="flex gap-3 has-checked:bg-neutral-100 py-2 ps-4 border-neutral-300 border-b">
+              <input
+                type="radio"
+                name="scope"
+                id="exam1"
+                value="exam1"
+                defaultChecked
+              />
+              <label className="flex-1" htmlFor="exam1">
+                Track 1–22 (Exam 1)
+              </label>
+            </div>
+            <div className="flex gap-3 has-checked:bg-neutral-100 py-2 ps-4 border-neutral-300 border-b">
+              <input type="radio" name="scope" id="exam2" value="exam2" />
+              <label className="flex-1" htmlFor="exam2">
+                Track 23–44 (Exam 2)
+              </label>
+            </div>
+            <div className="flex gap-3 has-checked:bg-neutral-100 py-2 ps-4 border-neutral-300 border-b">
+              <input type="radio" name="scope" id="exam3" value="exam3" />
+              <label className="flex-1" htmlFor="exam3">
+                Track 23–44 (Exam 3)
+              </label>
+            </div>
+            <div className="flex gap-3 has-checked:bg-neutral-100 py-2 ps-4">
+              <input type="radio" name="scope" id="final" value="final" />
+              <label className="flex-1" htmlFor="final">
+                Track 1–66 (Final)
+              </label>
+            </div>
           </div>
         </fieldset>
-        <div>
+
+        <div className="flex gap-3 has-checked:bg-neutral-100 py-2 ps-4 border border-neutral-300 rounded-sm w-full">
           <input id="randomStartTime" name="randomStartTime" type="checkbox" />
-          <label htmlFor="randomStartTime">Randomize start time</label>
+          <label className="flex-1" htmlFor="randomStartTime">
+            Randomize start time
+          </label>
         </div>
 
-        <button type="submit">Start</button>
+        <button
+          type="submit"
+          className="hover:bg-neutral-800 mt-2 py-3 border border-neutral-800 rounded-full w-full hover:text-white cursor-pointer"
+        >
+          Start
+        </button>
       </form>
     </main>
   );
