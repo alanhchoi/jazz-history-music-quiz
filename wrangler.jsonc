@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jazz-history-music-quiz",
+  "main": "./workers/app.ts",
+  "compatibility_date": "2026-09-17",
+  "observability": {
+    "enabled": true
+  }
+}
