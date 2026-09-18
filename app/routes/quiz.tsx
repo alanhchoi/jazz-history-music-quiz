@@ -51,7 +51,7 @@ export default function Quiz() {
 
   return (
     <div className="top-0 right-0 bottom-0 left-0 fixed flex flex-col">
-      <header className="pt-[env(safe-area-inset-top)] flex flex-none items-stretch md:pe-2 border-b">
+      <header className="pt-[env(safe-area-inset-top)] flex flex-none items-stretch md:pe-2">
         <Link
           to="/"
           className="flex flex-none items-center gap-1 hover:bg-neutral-950 dark:hover:bg-neutral-800 py-2 ps-2 pe-3 font-medium hover:text-white text-sm tracking-wide cursor-pointer neutral-800"
@@ -117,9 +117,9 @@ export default function Quiz() {
             type="button"
             onClick={() => setCurrent(current - 1)}
             disabled={current === 0}
-            className="flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 ps-4 pe-8 enabled:hover:text-white text-lg enabled:cursor-pointer"
+            className="flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 ps-4 pe-8 min-w-0 max-w-full enabled:hover:text-white text-lg enabled:cursor-pointer"
           >
-            <ChevronLeftIcon className="size-5" />
+            <ChevronLeftIcon className="flex-none size-5" />
             <span className="overflow-hidden text-ellipsis">Previous</span>
           </button>
         </div>
@@ -132,10 +132,10 @@ export default function Quiz() {
             type="button"
             onClick={() => setCurrent(current + 1)}
             disabled={current === listLength - 1}
-            className="right-0 absolute flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 ps-8 pe-4 enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
+            className="flex flex-row-reverse items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 ms-auto py-4 ps-8 pe-4 min-w-0 max-w-full overflow-hidden enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
           >
-            Next
-            <ChevronRightIcon className="size-5" />
+            <ChevronRightIcon className="flex-none size-5" />
+            <span className="overflow-hidden text-ellipsis">Next</span>
           </button>
         </div>
       </div>
