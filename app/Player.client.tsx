@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import YouTube, { type YouTubeProps } from "react-youtube";
 import { PlayIcon, PauseIcon, ArrowPathIcon } from "@heroicons/react/24/solid";
 import clsx from "clsx";
@@ -25,6 +25,7 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
   const [startTime, setStartTime] = useState(0);
   const [showAnswer, setShowAnswer] = useState(false);
   const [isBuffering, setIsBuffering] = useState(false);
+  const [playerWidth, setPlayerWidth] = useState(0);
   const { title, credits, youtubeId } = tune;
 
   const onPlayerReady: YouTubeProps["onReady"] = (event) => {
@@ -40,9 +41,13 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
     }
   };
 
+  useLayoutEffect(() => {
+    setPlayerWidth(Math.min(320, window.innerWidth - 32));
+  }, []);
+
   const opts: YouTubeProps["opts"] = {
-    width: 320,
-    height: 240,
+    width: playerWidth,
+    height: playerWidth * 0.75,
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       playsinline: 1,
@@ -51,36 +56,38 @@ export default function Player({ tune, randomStartTime }: PlayerProps) {
 
   return (
     <div className="flex flex-row flex-wrap items-start gap-4 px-4 min-w-0">
-      <YouTube
-        videoId={youtubeId}
-        style={
-          showAnswer
-            ? {}
-            : {
-                opacity: 0,
-                pointerEvents: "none",
-                position: "fixed",
-                zIndex: -1,
-              }
-        }
-        onReady={onPlayerReady}
-        onPlay={() => {
-          setIsPlaying(true);
-          setHasPlayed(true);
-        }}
-        onPause={() => {
-          setIsPlaying(false);
-        }}
-        onEnd={() => {
-          setIsPlaying(false);
-        }}
-        onStateChange={(event) => {
-          console.log(event.data);
-          const newIsBuffering = event.data === 3;
-          setIsBuffering(newIsBuffering);
-        }}
-        opts={opts}
-      />
+      {playerWidth > 0 && (
+        <YouTube
+          videoId={youtubeId}
+          style={
+            showAnswer
+              ? {}
+              : {
+                  opacity: 0,
+                  pointerEvents: "none",
+                  position: "fixed",
+                  zIndex: -1,
+                }
+          }
+          onReady={onPlayerReady}
+          onPlay={() => {
+            setIsPlaying(true);
+            setHasPlayed(true);
+          }}
+          onPause={() => {
+            setIsPlaying(false);
+          }}
+          onEnd={() => {
+            setIsPlaying(false);
+          }}
+          onStateChange={(event) => {
+            console.log(event.data);
+            const newIsBuffering = event.data === 3;
+            setIsBuffering(newIsBuffering);
+          }}
+          opts={opts}
+        />
+      )}
       <div>
         {showAnswer ? (
           <div className="max-w-72 md:max-w-96 text-pretty">

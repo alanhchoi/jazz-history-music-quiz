@@ -50,16 +50,17 @@ export default function Quiz() {
   const currentItem = shuffledFilteredList[current];
 
   return (
-    <div className="flex flex-col min-h-dvh">
-      <header className="flex items-stretch md:pe-2 border-b">
+    <div className="top-0 right-0 bottom-0 left-0 fixed flex flex-col">
+      <header className="pt-[env(safe-area-inset-top)] flex flex-none items-stretch md:pe-2 border-b">
         <Link
           to="/"
-          className="flex flex-none items-center gap-1 hover:bg-neutral-950 dark:hover:bg-neutral-800 py-2 ps-2 pe-3 border-e font-medium hover:text-white text-sm tracking-wide cursor-pointer neutral-800"
+          className="flex flex-none items-center gap-1 hover:bg-neutral-950 dark:hover:bg-neutral-800 py-2 ps-2 pe-3 font-medium hover:text-white text-sm tracking-wide cursor-pointer neutral-800"
         >
+          <ChevronLeftIcon className="-me-1 size-5" />
           <HomeIcon className="size-5" />
-          Home
+          <span className="sr-only md:not-sr-only">Home</span>
         </Link>
-        <div className="flex flex-col md:flex-1 justify-center self-stretch px-2 py-1 text-xs">
+        <div className="flex flex-col flex-1 justify-center self-stretch py-1 ps-3 pe-2 text-xs">
           <div className="flex-1 font-medium uppercase tracking-wide">
             Scope: tracks {scopeStart}–{scopeEnd}
           </div>
@@ -79,14 +80,14 @@ export default function Quiz() {
             <span>Play at a random point</span>
           </label>
         </div>
-        <div className="flex-1 md:flex-none self-center px-4 font-medium text-sm md:text-lg text-end uppercase tracking-wide">
+        <div className="flex-none md:flex-none self-center px-4 font-medium text-sm md:text-lg text-end uppercase tracking-wide">
           {current + 1} / {listLength}
         </div>
         <button
           type="button"
           onClick={() => setCurrent(current - 1)}
           disabled={current === 0}
-          className="bottom-[env(safe-area-inset-bottom)] left-0 fixed md:relative flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 md:py-2 ps-4 md:ps-1 pe-8 md:pe-3 md:font-medium enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
+          className="hidden md:flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 md:py-2 ps-4 md:ps-1 pe-8 md:pe-3 md:font-medium enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
         >
           <ChevronLeftIcon className="size-5" />
           Previous
@@ -95,16 +96,13 @@ export default function Quiz() {
           type="button"
           onClick={() => setCurrent(current + 1)}
           disabled={current === listLength - 1}
-          className="right-0 bottom-[env(safe-area-inset-bottom)] fixed md:relative flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 md:py-2 ps-8 md:ps-3 pe-4 md:pe-1 md:font-medium enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
+          className="hidden md:flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 md:py-2 ps-8 md:ps-3 pe-4 md:pe-1 md:font-medium enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
         >
           Next
           <ChevronRightIcon className="size-5" />
         </button>
-        <div className="md:hidden bottom-[env(safe-area-inset-bottom)] left-1/2 fixed py-4 text-lg tracking-wide -translate-x-1/2">
-          {current + 1} / {listLength}
-        </div>
       </header>
-      <div className="flex flex-col flex-1 justify-center items-center pt-8 pb-16">
+      <div className="flex flex-col flex-1 justify-center items-center py-8 overflow-y-auto">
         {Player != null && (
           <Player
             key={currentItem.youtubeId}
@@ -112,6 +110,34 @@ export default function Quiz() {
             randomStartTime={randomStartTime}
           />
         )}
+      </div>
+      <div className="md:hidden pb-[env(safe-area-inset-bottom)] flex flex-none w-full">
+        <div className="flex-1 min-w-0 overflow-hidden">
+          <button
+            type="button"
+            onClick={() => setCurrent(current - 1)}
+            disabled={current === 0}
+            className="flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 ps-4 pe-8 enabled:hover:text-white text-lg enabled:cursor-pointer"
+          >
+            <ChevronLeftIcon className="size-5" />
+            <span className="overflow-hidden text-ellipsis">Previous</span>
+          </button>
+        </div>
+
+        <span className="mx-auto py-4 text-lg tracking-wide">
+          {current + 1} / {listLength}
+        </span>
+        <div className="flex-1 min-w-0">
+          <button
+            type="button"
+            onClick={() => setCurrent(current + 1)}
+            disabled={current === listLength - 1}
+            className="right-0 absolute flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 ps-8 pe-4 enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
+          >
+            Next
+            <ChevronRightIcon className="size-5" />
+          </button>
+        </div>
       </div>
     </div>
   );
