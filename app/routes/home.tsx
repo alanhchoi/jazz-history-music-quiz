@@ -29,9 +29,9 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col px-8 pt-8 pb-4">
+    <main className="flex flex-col px-4 md:px-8 pt-8 pb-4">
       <header className="mb-8">
-        <h1 className="font-bold text-5xl text-pretty">
+        <h1 className="font-bold text-3xl md:text-5xl text-pretty">
           Jazz History Listening List Music Quiz
         </h1>
       </header>

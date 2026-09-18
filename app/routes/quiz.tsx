@@ -51,7 +51,7 @@ export default function Quiz() {
 
   return (
     <div className="top-0 right-0 bottom-0 left-0 fixed flex flex-col">
-      <header className="pt-[env(safe-area-inset-top)] flex flex-none items-stretch md:pe-2">
+      <header className="flex flex-none items-stretch py-4 md:pe-2 border-neutral-200 dark:border-neutral-700 border-b">
         <Link
           to="/"
           className="flex flex-none items-center gap-1 hover:bg-neutral-950 dark:hover:bg-neutral-800 py-2 ps-2 pe-3 font-medium hover:text-white text-sm tracking-wide cursor-pointer neutral-800"
@@ -60,9 +60,10 @@ export default function Quiz() {
           <HomeIcon className="size-5" />
           <span className="sr-only md:not-sr-only">Home</span>
         </Link>
-        <div className="flex flex-col flex-1 justify-center self-stretch py-1 ps-3 pe-2 text-xs">
+        <div className="flex flex-col flex-1 justify-center self-stretch py-1 ps-3 pe-2 min-w-0 text-xs">
           <div className="flex-1 font-medium uppercase tracking-wide">
-            Scope: tracks {scopeStart}–{scopeEnd}
+            <span className="sr-only md:not-sr-only">Scope: </span>tracks{" "}
+            {scopeStart}–{scopeEnd}
           </div>
           <label
             htmlFor="randomStartTime"
@@ -77,7 +78,9 @@ export default function Quiz() {
                 setRandomStartTime(event.target.checked);
               }}
             />
-            <span>Play at a random point</span>
+            <span className="overflow-hidden text-ellipsis text-nowrap">
+              Play at a random point
+            </span>
           </label>
         </div>
         <div className="flex-none md:flex-none self-center px-4 font-medium text-sm md:text-lg text-end uppercase tracking-wide">
