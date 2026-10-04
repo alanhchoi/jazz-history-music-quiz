@@ -57,7 +57,13 @@ export default function Home() {
               </label>
             </div>
             <div className="flex items-center gap-3 dark:has-checked:bg-transparent has-checked:bg-neutral-100 py-2 ps-4 border-neutral-300 dark:border-neutral-400 border-b dark:has-checked:text-white dark:text-neutral-400">
-              <input type="radio" name="scope" id="exam2" value="exam2" />
+              <input
+                type="radio"
+                name="scope"
+                id="exam2"
+                value="exam2"
+                defaultChecked
+              />
               <label className="flex-1" htmlFor="exam2">
                 Track 23–44 (Exam 2)
               </label>
