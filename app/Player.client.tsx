@@ -9,7 +9,7 @@ interface PlayerProps {
     credits: string;
     youtubeId: string;
   };
-  randomStartTime: boolean;
+  randomStartTime?: boolean;
 }
 
 function getRandomIntExclusive(min: number, max: number) {
@@ -18,7 +18,7 @@ function getRandomIntExclusive(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-export default function Player({ tune, randomStartTime }: PlayerProps) {
+export default function Player({ tune, randomStartTime = false }: PlayerProps) {
   const youtubePlayerRef = useRef<any>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasPlayed, setHasPlayed] = useState(false);

@@ -5,7 +5,7 @@ import { ChevronUpDownIcon } from "@heroicons/react/24/solid";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "34400 Listening List Music Quiz" },
+    { title: "34400 Listening List" },
     { name: "description", content: "" },
   ];
 }
@@ -18,13 +18,7 @@ export default function Home() {
 
     const formData = new FormData(event.currentTarget);
     const searchParams = new URLSearchParams();
-
-    const randomStartTime = formData.get("randomStartTime");
     searchParams.append("scope", String(formData.get("scope")));
-
-    if (randomStartTime === "on") {
-      searchParams.append("randomStartTime", "on");
-    }
 
     navigate("/quiz?" + searchParams.toString());
   };
@@ -61,13 +55,6 @@ export default function Home() {
             </select>
             <ChevronUpDownIcon className="top-1/2 right-2 absolute size-5 -translate-y-1/2 pointer-events-none" />
           </div>
-        </div>
-
-        <div className="flex items-center gap-3 dark:has-checked:bg-transparent has-checked:bg-neutral-100 py-2 ps-4 border border-neutral-300 dark:border-neutral-400 rounded-sm w-full dark:has-checked:text-white dark:text-neutral-400">
-          <input id="randomStartTime" name="randomStartTime" type="checkbox" />
-          <label className="flex-1" htmlFor="randomStartTime">
-            Play at a random point
-          </label>
         </div>
 
         <button

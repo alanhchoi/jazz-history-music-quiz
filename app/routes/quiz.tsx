@@ -24,7 +24,7 @@ function getScope(scopeParam: string) {
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "34400 Listening List Music Quiz" },
+    { title: "34400 Listening List" },
     { name: "description", content: "" },
   ];
 }
@@ -33,11 +33,7 @@ export default function Quiz() {
   const [searchParams] = useSearchParams();
 
   const scopeParam = searchParams.get("scope") || "final";
-  const defaultRandomStartTime = searchParams.get("randomStartTime") === "on";
   const [current, setCurrent] = useState(0);
-  const [randomStartTime, setRandomStartTime] = useState(
-    defaultRandomStartTime,
-  );
 
   const [scopeStart, scopeEnd] = getScope(scopeParam);
   const listLength = scopeEnd - scopeStart + 1;
@@ -60,28 +56,10 @@ export default function Quiz() {
           <HomeIcon className="size-5" />
           <span className="sr-only md:not-sr-only">Home</span>
         </Link>
-        <div className="flex flex-col flex-1 justify-center self-stretch py-1 ps-3 pe-2 min-w-0 text-xs">
-          <div className="flex-1 font-medium uppercase tracking-wide">
-            <span className="sr-only md:not-sr-only">Scope: </span>tracks{" "}
-            {scopeStart}–{scopeEnd}
+        <div className="flex flex-col flex-1 justify-center self-center py-1 ps-3 pe-2 min-w-0 text-sm">
+          <div className="flex-1 font-semibold tracking-wide">
+            Tracks {scopeStart}–{scopeEnd}
           </div>
-          <label
-            htmlFor="randomStartTime"
-            className="flex items-center self-stretch gap-1.5 text-neutral-600 dark:text-neutral-300"
-          >
-            <input
-              id="randomStartTime"
-              name="randomStartTime"
-              type="checkbox"
-              checked={randomStartTime}
-              onChange={(event) => {
-                setRandomStartTime(event.target.checked);
-              }}
-            />
-            <span className="overflow-hidden text-ellipsis text-nowrap">
-              Play at a random point
-            </span>
-          </label>
         </div>
         <div className="flex-none md:flex-none self-center px-4 font-medium text-sm md:text-lg text-end uppercase tracking-wide">
           {current + 1} / {listLength}
@@ -107,11 +85,7 @@ export default function Quiz() {
       </header>
       <div className="flex flex-col flex-1 justify-center items-center py-8 overflow-y-auto">
         {Player != null && (
-          <Player
-            key={currentItem.youtubeId}
-            tune={currentItem}
-            randomStartTime={randomStartTime}
-          />
+          <Player key={currentItem.youtubeId} tune={currentItem} />
         )}
       </div>
       <div className="md:hidden pb-[env(safe-area-inset-bottom)] flex flex-none w-full">
