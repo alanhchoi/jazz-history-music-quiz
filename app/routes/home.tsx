@@ -1,6 +1,7 @@
 import type { Route } from "./+types/home";
 import type { SubmitEventHandler } from "react";
 import { useNavigate } from "react-router";
+import { ChevronUpDownIcon } from "@heroicons/react/24/solid";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -39,49 +40,28 @@ export default function Home() {
         className="flex flex-col flex-1 items-start gap-4 max-w-96"
         onSubmit={startQuiz}
       >
-        <fieldset className="items-stretch w-full">
-          <legend className="mb-1 font-semibold text-sm uppercase tracking-wider">
-            Scope
-          </legend>
-          <div className="flex flex-col border border-neutral-300 dark:border-neutral-400 rounded-sm">
-            <div className="flex items-center gap-3 dark:has-checked:bg-transparent has-checked:bg-neutral-100 py-2 ps-4 border-neutral-300 dark:border-neutral-400 border-b dark:has-checked:text-white dark:text-neutral-400">
-              <input
-                type="radio"
-                name="scope"
-                id="exam1"
-                value="exam1"
-                defaultChecked
-              />
-              <label className="flex-1" htmlFor="exam1">
-                Track 1–22 (Exam 1)
-              </label>
-            </div>
-            <div className="flex items-center gap-3 dark:has-checked:bg-transparent has-checked:bg-neutral-100 py-2 ps-4 border-neutral-300 dark:border-neutral-400 border-b dark:has-checked:text-white dark:text-neutral-400">
-              <input
-                type="radio"
-                name="scope"
-                id="exam2"
-                value="exam2"
-                defaultChecked
-              />
-              <label className="flex-1" htmlFor="exam2">
-                Track 23–44 (Exam 2)
-              </label>
-            </div>
-            <div className="flex items-center gap-3 dark:has-checked:bg-transparent has-checked:bg-neutral-100 py-2 ps-4 border-neutral-300 dark:border-neutral-400 border-b dark:has-checked:text-white dark:text-neutral-400">
-              <input type="radio" name="scope" id="exam3" value="exam3" />
-              <label className="flex-1" htmlFor="exam3">
-                Track 23–44 (Exam 3)
-              </label>
-            </div>
-            <div className="flex items-center gap-3 dark:has-checked:bg-transparent has-checked:bg-neutral-100 py-2 ps-4 dark:has-checked:text-white dark:text-neutral-400">
-              <input type="radio" name="scope" id="final" value="final" />
-              <label className="flex-1" htmlFor="final">
-                Track 1–66 (Final)
-              </label>
-            </div>
+        <div className="flex flex-col items-stretch w-full">
+          <label
+            className="mb-1 font-semibold text-sm uppercase tracking-wider"
+            htmlFor="scope"
+          >
+            Select Scope
+          </label>
+          <div className="relative w-full">
+            <select
+              id="scope"
+              name="scope"
+              className="bg-neutral-50 hover:bg-neutral-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 px-4 py-2 border border-neutral-300 dark:border-neutral-700 rounded-sm w-full dark:text-neutral-400 appearance-none cursor-pointer"
+              defaultValue="exam2"
+            >
+              <option value="exam1">Track 1–22 (Exam 1)</option>
+              <option value="exam2">Track 23–44 (Exam 2)</option>
+              <option value="exam3">Track 23–44 (Exam 3)</option>
+              <option value="final">Track 1–66 (Final)</option>
+            </select>
+            <ChevronUpDownIcon className="top-1/2 right-2 absolute size-5 -translate-y-1/2 pointer-events-none" />
           </div>
-        </fieldset>
+        </div>
 
         <div className="flex items-center gap-3 dark:has-checked:bg-transparent has-checked:bg-neutral-100 py-2 ps-4 border border-neutral-300 dark:border-neutral-400 rounded-sm w-full dark:has-checked:text-white dark:text-neutral-400">
           <input id="randomStartTime" name="randomStartTime" type="checkbox" />
