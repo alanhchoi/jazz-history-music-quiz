@@ -1,6 +1,8 @@
+import { AnimatePresence } from "motion/react";
+import * as motion from "motion/react-client";
 import { Link, useSearchParams } from "react-router";
 import data from "../data.json";
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import { shuffle } from "fast-shuffle";
 import Player from "../Player.client";
 import { HomeIcon } from "@heroicons/react/20/solid";
@@ -22,6 +24,7 @@ export default function Quiz() {
 
   const scopeParam = searchParams.get("scope") || "final";
   const [current, setCurrent] = useState(0);
+  const currentChange = useRef(0);
 
   const [scopeStart, scopeEnd] = getScope(scopeParam);
   const listLength = scopeEnd - scopeStart + 1;
@@ -32,6 +35,11 @@ export default function Quiz() {
   }, [scopeStart, scopeEnd]);
 
   const currentItem = shuffledFilteredList[current];
+
+  const addToCurrent = (change: number) => {
+    setCurrent(current + change);
+    currentChange.current = change;
+  };
 
   return (
     <div className="top-0 right-0 bottom-0 left-0 fixed flex flex-col">
@@ -49,12 +57,21 @@ export default function Quiz() {
             Tracks {scopeStart}–{scopeEnd}
           </div>
         </div>
-        <div className="flex-none md:flex-none self-center px-4 font-medium text-sm md:text-lg text-end uppercase tracking-wide">
-          {current + 1} / {listLength}
-        </div>
+        <AnimatePresence mode="wait">
+          <motion.div
+            className="flex-none md:flex-none self-center px-4 font-medium text-sm md:text-lg text-end uppercase tracking-wide"
+            key={current}
+            initial={{ y: currentChange.current < 0 ? -10 : 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: currentChange.current < 0 ? 10 : -10, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {current + 1} / {listLength}
+          </motion.div>
+        </AnimatePresence>
         <button
           type="button"
-          onClick={() => setCurrent(current - 1)}
+          onClick={() => addToCurrent(-1)}
           disabled={current === 0}
           className="hidden md:flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 md:py-2 ps-4 md:ps-1 pe-8 md:pe-3 md:font-medium enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
         >
@@ -63,7 +80,7 @@ export default function Quiz() {
         </button>
         <button
           type="button"
-          onClick={() => setCurrent(current + 1)}
+          onClick={() => addToCurrent(1)}
           disabled={current === listLength - 1}
           className="hidden md:flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 md:py-2 ps-8 md:ps-3 pe-4 md:pe-1 md:font-medium enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
         >
@@ -80,7 +97,7 @@ export default function Quiz() {
         <div className="flex-1 min-w-0 overflow-hidden">
           <button
             type="button"
-            onClick={() => setCurrent(current - 1)}
+            onClick={() => addToCurrent(-1)}
             disabled={current === 0}
             className="flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 ps-4 pe-8 min-w-0 max-w-full enabled:hover:text-white text-lg enabled:cursor-pointer"
           >
@@ -89,13 +106,22 @@ export default function Quiz() {
           </button>
         </div>
 
-        <span className="mx-auto py-4 text-lg tracking-wide">
-          {current + 1} / {listLength}
-        </span>
+        <AnimatePresence mode="wait">
+          <motion.span
+            className="mx-auto py-4 text-lg tracking-wide"
+            key={current}
+            initial={{ y: currentChange.current < 0 ? -10 : 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: currentChange.current < 0 ? 10 : -10, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {current + 1} / {listLength}
+          </motion.span>
+        </AnimatePresence>
         <div className="flex-1 min-w-0">
           <button
             type="button"
-            onClick={() => setCurrent(current + 1)}
+            onClick={() => addToCurrent(1)}
             disabled={current === listLength - 1}
             className="flex flex-row-reverse items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 ms-auto py-4 ps-8 pe-4 min-w-0 max-w-full overflow-hidden enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
           >
