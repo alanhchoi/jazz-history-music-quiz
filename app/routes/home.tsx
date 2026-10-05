@@ -31,7 +31,7 @@ export default function Home() {
   return (
     <main className="flex flex-col md:items-center px-4 md:px-8 pt-8 pb-4">
       <header className="mb-8">
-        <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl text-pretty">
+        <h1 className="font-display font-medium text-3xl md:text-4xl lg:text-5xl text-pretty">
           Jazz History Listening List
         </h1>
       </header>
@@ -68,14 +68,14 @@ export default function Home() {
         <div className="flex-col gap-2 w-full">
           <button
             type="button"
-            className="bg-neutral-100 hover:bg-neutral-200 active:bg-neutral-300 dark:hover:bg-transparent mt-2 py-3 rounded-lg w-full font-medium transition-colors cursor-pointer"
+            className="bg-neutral-100 hover:bg-neutral-200 active:bg-neutral-300 dark:bg-neutral-900 dark:hover:bg-neutral-800 dark:active:bg-neutral-700 mt-2 py-3 rounded-lg w-full font-medium transition-colors cursor-pointer"
             onClick={navigateToPlay}
           >
             Listen in order
           </button>
           <button
             type="submit"
-            className="bg-amber-700 hover:bg-amber-800 dark:hover:bg-transparent mt-2 py-3 rounded-lg w-full font-medium text-amber-50 hover:text-white transition-colors cursor-pointer"
+            className="bg-amber-700 hover:bg-amber-800 active:bg-amber-900 dark:bg-amber-900 dark:hover:bg-amber-800 dark:active:bg-amber-700 mt-2 py-3 rounded-lg w-full font-medium text-amber-50 transition-colors cursor-pointer"
           >
             Start quiz
           </button>
