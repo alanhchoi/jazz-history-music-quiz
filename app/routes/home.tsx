@@ -58,7 +58,7 @@ export default function Home() {
             >
               <option value="exam1">Track 1–22 (Exam 1)</option>
               <option value="exam2">Track 23–44 (Exam 2)</option>
-              <option value="exam3">Track 23–44 (Exam 3)</option>
+              <option value="exam3">Track 45–66 (Exam 3)</option>
               <option value="final">Track 1–66 (Final)</option>
             </select>
             <ChevronUpDownIcon className="top-1/2 right-2 absolute size-5 -translate-y-1/2 pointer-events-none" />
