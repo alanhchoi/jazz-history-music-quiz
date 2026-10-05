@@ -24,14 +24,14 @@ export default function Home() {
   };
 
   return (
-    <main className="flex flex-col px-4 md:px-8 pt-8 pb-4">
+    <main className="flex flex-col md:items-center px-4 md:px-8 pt-8 pb-4">
       <header className="mb-8">
-        <h1 className="font-bold text-3xl md:text-5xl text-pretty">
-          Jazz History Listening List Music Quiz
+        <h1 className="font-bold text-3xl md:text-4xl lg:text-5xl text-pretty">
+          Jazz History Listening List
         </h1>
       </header>
       <form
-        className="flex flex-col flex-1 items-start gap-4 max-w-96"
+        className="flex flex-col flex-1 items-start gap-4 md:w-96 max-w-96"
         onSubmit={startQuiz}
       >
         <div className="flex flex-col items-stretch w-full">
@@ -57,12 +57,20 @@ export default function Home() {
           </div>
         </div>
 
-        <button
-          type="submit"
-          className="hover:bg-neutral-800 dark:hover:bg-transparent mt-2 py-3 border border-neutral-800 dark:border-neutral-400 rounded-full w-full hover:text-white cursor-pointer"
-        >
-          Start
-        </button>
+        <div className="flex-col gap-2 w-full">
+          <button
+            type="button"
+            className="bg-neutral-100 hover:bg-neutral-200 active:bg-neutral-300 dark:hover:bg-transparent mt-2 py-3 rounded-lg w-full font-medium transition-colors cursor-pointer"
+          >
+            Listen in order
+          </button>
+          <button
+            type="submit"
+            className="bg-amber-700 hover:bg-amber-800 dark:hover:bg-transparent mt-2 py-3 rounded-lg w-full font-medium text-amber-50 hover:text-white transition-colors cursor-pointer"
+          >
+            Start quiz
+          </button>
+        </div>
       </form>
     </main>
   );
