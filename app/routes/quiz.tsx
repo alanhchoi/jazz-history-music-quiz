@@ -58,7 +58,7 @@ export default function Quiz() {
           <div className="flex-1 font-semibold text-md tracking-wide">
             Tracks {scopeStart}–{scopeEnd}
           </div>
-          <div className="flex has-hover:bg-neutral-100 ps-1 rounded-xs font-medium">
+          <div className="flex items-center has-hover:bg-neutral-100 ps-1 rounded-xs font-medium">
             <input
               className="accent-amber-600"
               type="checkbox"
