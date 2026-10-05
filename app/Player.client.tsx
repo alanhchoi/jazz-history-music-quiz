@@ -10,6 +10,8 @@ interface PlayerProps {
     youtubeId: string;
   };
   randomStartTime?: boolean;
+  showAnswerFirst?: boolean;
+  autoPlay?: boolean;
 }
 
 function getRandomIntExclusive(min: number, max: number) {
@@ -18,12 +20,17 @@ function getRandomIntExclusive(min: number, max: number) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-export default function Player({ tune, randomStartTime = false }: PlayerProps) {
+export default function Player({
+  tune,
+  randomStartTime = false,
+  showAnswerFirst = false,
+  autoPlay = false,
+}: PlayerProps) {
   const youtubePlayerRef = useRef<any>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [hasPlayed, setHasPlayed] = useState(false);
   const [startTime, setStartTime] = useState(0);
-  const [showAnswer, setShowAnswer] = useState(false);
+  const [showAnswer, setShowAnswer] = useState(showAnswerFirst);
   const [isBuffering, setIsBuffering] = useState(false);
   const [playerWidth, setPlayerWidth] = useState(0);
   const { title, credits, youtubeId } = tune;
@@ -51,6 +58,7 @@ export default function Player({ tune, randomStartTime = false }: PlayerProps) {
     playerVars: {
       // https://developers.google.com/youtube/player_parameters
       playsinline: 1,
+      autoplay: autoPlay ? 1 : 0,
     },
   };
 

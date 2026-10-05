@@ -1,5 +1,5 @@
 import type { Route } from "./+types/home";
-import type { SubmitEventHandler } from "react";
+import { useState, type SubmitEventHandler } from "react";
 import { useNavigate } from "react-router";
 import { ChevronUpDownIcon } from "@heroicons/react/24/solid";
 
@@ -12,15 +12,20 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const navigate = useNavigate();
+  const [scope, setScope] = useState("exam2");
 
   const startQuiz: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
 
-    const formData = new FormData(event.currentTarget);
     const searchParams = new URLSearchParams();
-    searchParams.append("scope", String(formData.get("scope")));
-
+    searchParams.append("scope", scope);
     navigate("/quiz?" + searchParams.toString());
+  };
+
+  const navigateToPlay = () => {
+    const searchParams = new URLSearchParams();
+    searchParams.append("scope", scope);
+    navigate("/play?" + searchParams.toString());
   };
 
   return (
@@ -46,7 +51,10 @@ export default function Home() {
               id="scope"
               name="scope"
               className="bg-neutral-50 hover:bg-neutral-100 dark:bg-neutral-900 dark:hover:bg-neutral-800 px-4 py-2 border border-neutral-300 dark:border-neutral-700 rounded-sm w-full dark:text-neutral-400 appearance-none cursor-pointer"
-              defaultValue="exam2"
+              value={scope}
+              onChange={(event) => {
+                setScope(event.target.value);
+              }}
             >
               <option value="exam1">Track 1–22 (Exam 1)</option>
               <option value="exam2">Track 23–44 (Exam 2)</option>
@@ -61,6 +69,7 @@ export default function Home() {
           <button
             type="button"
             className="bg-neutral-100 hover:bg-neutral-200 active:bg-neutral-300 dark:hover:bg-transparent mt-2 py-3 rounded-lg w-full font-medium transition-colors cursor-pointer"
+            onClick={navigateToPlay}
           >
             Listen in order
           </button>
