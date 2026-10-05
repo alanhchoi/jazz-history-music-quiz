@@ -23,6 +23,7 @@ export default function Quiz() {
 
   const scopeParam = searchParams.get("scope") || "final";
   const [current, setCurrent] = useState(0);
+  const [autoPlay, setAutoPlay] = useState(false);
 
   const [scopeStart, scopeEnd] = getScope(scopeParam);
   const listLength = scopeEnd - scopeStart + 1;
@@ -53,9 +54,22 @@ export default function Quiz() {
           <HomeIcon className="size-5" />
           <span className="sr-only md:not-sr-only">Home</span>
         </Link>
-        <div className="flex flex-col flex-1 justify-center self-center py-1 ps-3 pe-2 min-w-0 text-sm">
-          <div className="flex-1 font-semibold tracking-wide">
+        <div className="flex flex-col flex-1 justify-center items-start self-center py-1 ps-3 pe-2 min-w-0 text-sm">
+          <div className="flex-1 font-semibold text-md tracking-wide">
             Tracks {scopeStart}–{scopeEnd}
+          </div>
+          <div className="flex has-hover:bg-neutral-100 ps-1 rounded-xs font-medium">
+            <input
+              className="accent-amber-600"
+              type="checkbox"
+              id="autoplay"
+              onChange={(event) => {
+                setAutoPlay(event.target.checked);
+              }}
+            />
+            <label htmlFor="autoplay" className="px-1">
+              Autoplay
+            </label>
           </div>
         </div>
         <CurrentPlayingNumber
@@ -84,7 +98,11 @@ export default function Quiz() {
       </header>
       <div className="flex flex-col flex-1 justify-center items-center py-8 overflow-y-auto">
         {Player != null && (
-          <Player key={currentItem.youtubeId} tune={currentItem} />
+          <Player
+            key={currentItem.youtubeId}
+            tune={currentItem}
+            autoPlay={autoPlay}
+          />
         )}
       </div>
       <div className="md:hidden pb-[env(safe-area-inset-bottom)] flex flex-none w-full">
