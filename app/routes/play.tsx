@@ -6,6 +6,7 @@ import { HomeIcon } from "@heroicons/react/20/solid";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import type { Route } from "./+types/home";
 import { getScope } from "../getScope";
+import CurrentPlayingNumber from "~/CurrentPlayingNumber";
 
 const { listeningList } = data;
 
@@ -48,9 +49,12 @@ export default function Quiz() {
             Tracks {scopeStart}–{scopeEnd}
           </div>
         </div>
-        <div className="flex-none md:flex-none self-center px-4 font-medium text-sm md:text-lg text-end uppercase tracking-wide">
-          {current + 1} / {listLength}
-        </div>
+        <CurrentPlayingNumber
+          className="flex-none md:flex-none self-center px-4 font-medium text-sm md:text-lg text-end uppercase tracking-wide"
+          current={current}
+          total={listLength}
+        />
+
         <button
           type="button"
           onClick={() => setCurrent(current - 1)}
@@ -93,9 +97,12 @@ export default function Quiz() {
           </button>
         </div>
 
-        <span className="mx-auto py-4 text-lg tracking-wide">
-          {current + 1} / {listLength}
-        </span>
+        <CurrentPlayingNumber
+          className="mx-auto py-4 text-lg tracking-wide"
+          current={current}
+          total={listLength}
+        />
+
         <div className="flex-1 min-w-0">
           <button
             type="button"
