@@ -58,19 +58,6 @@ export default function Quiz() {
           <div className="flex-1 font-semibold text-md tracking-wide">
             Tracks {scopeStart}–{scopeEnd}
           </div>
-          <div className="flex items-center has-hover:bg-neutral-100 ps-1 rounded-xs font-medium">
-            <input
-              className="accent-amber-600"
-              type="checkbox"
-              id="autoplay"
-              onChange={(event) => {
-                setAutoPlay(event.target.checked);
-              }}
-            />
-            <label htmlFor="autoplay" className="px-1">
-              Autoplay
-            </label>
-          </div>
         </div>
         <CurrentPlayingNumber
           current={current}
@@ -111,7 +98,7 @@ export default function Quiz() {
             type="button"
             onClick={playPrevious}
             disabled={current === 0}
-            className="flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 ps-4 pe-8 min-w-0 max-w-full enabled:hover:text-white text-lg enabled:cursor-pointer"
+            className="flex items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 py-4 ps-4 pe-8 min-w-0 max-w-full enabled:hover:text-white enabled:cursor-pointer"
           >
             <ChevronLeftIcon className="flex-none size-5" />
             <span className="overflow-hidden text-ellipsis">Previous</span>
@@ -119,7 +106,7 @@ export default function Quiz() {
         </div>
 
         <CurrentPlayingNumber
-          className="mx-auto py-4 text-lg tracking-wide"
+          className="mx-auto py-4 tracking-wide"
           current={current}
           total={listLength}
         />
@@ -129,7 +116,7 @@ export default function Quiz() {
             type="button"
             onClick={playNext}
             disabled={current === listLength - 1}
-            className="flex flex-row-reverse items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 ms-auto py-4 ps-8 pe-4 min-w-0 max-w-full overflow-hidden enabled:hover:text-white md:text-sm text-lg enabled:cursor-pointer"
+            className="flex flex-row-reverse items-center gap-1 dark:enabled:hover:bg-neutral-800 enabled:hover:bg-neutral-950 disabled:opacity-25 ms-auto py-4 ps-8 pe-4 min-w-0 max-w-full overflow-hidden enabled:hover:text-white enabled:cursor-pointer"
           >
             <ChevronRightIcon className="flex-none size-5" />
             <span className="overflow-hidden text-ellipsis">Next</span>

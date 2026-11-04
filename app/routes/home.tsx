@@ -12,7 +12,7 @@ export function meta({}: Route.MetaArgs) {
 
 export default function Home() {
   const navigate = useNavigate();
-  const [scope, setScope] = useState("exam2");
+  const [scope, setScope] = useState("exam3");
 
   const startQuiz: SubmitEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault();
